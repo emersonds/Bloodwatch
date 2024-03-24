@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 @onready var visuals = $Visuals
-
+@onready var camera_point = $CameraPoint
 
 
 const SPEED: float = 3.0
@@ -10,6 +10,10 @@ const JUMP_VELOCITY: float = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+
+func _ready():
+	GameManager.set_player(self)
 
 
 func _physics_process(delta):
@@ -25,7 +29,7 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	direction = direction.rotated(Vector3(0.0, 1, 0.0), 0.75)
+	#direction = direction.rotated(Vector3(0.0, 1, 0.0), 0.75)
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED

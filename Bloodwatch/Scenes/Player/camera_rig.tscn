@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvtfekl5neade"]
+
+[ext_resource type="Script" path="res://Scripts/camera_rig.gd" id="1_xlf7j"]
+[ext_resource type="Shader" path="res://Assets/Shaders/forground_shader.gdshader" id="2_2pwqy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kfdw0"]
+shader = ExtResource("2_2pwqy")
+shader_parameter/MULTIPLIER = 0.685
+shader_parameter/SCALE = 1.135
+shader_parameter/SOFTNESS = 0.405
+shader_parameter/BASE_OPACITY = 1.0
+
+[node name="CameraRig" type="Node3D"]
+script = ExtResource("1_xlf7j")
+
+[node name="BaseCamera" type="Camera3D" parent="."]
+cull_mask = 1047552
+
+[node name="BackgroundViewportContainer" type="SubViewportContainer" parent="BaseCamera"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundViewport" type="SubViewport" parent="BaseCamera/BackgroundViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="BackgroundCamera" type="Camera3D" parent="BaseCamera/BackgroundViewportContainer/BackgroundViewport"]
+cull_mask = 1047553
+
+[node name="ForegroundViewportContainer" type="SubViewportContainer" parent="BaseCamera"]
+material = SubResource("ShaderMaterial_kfdw0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ForegroundViewport" type="SubViewport" parent="BaseCamera/ForegroundViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="ForegroundCamera" type="Camera3D" parent="BaseCamera/ForegroundViewportContainer/ForegroundViewport"]
+cull_mask = 1047554
