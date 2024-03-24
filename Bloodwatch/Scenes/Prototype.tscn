@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkugmjfsx6v7j"]
+
+[ext_resource type="Material" uid="uid://bkb1iyedrlfkg" path="res://Assets/Materials/floor_material.tres" id="1_p45f2"]
+[ext_resource type="Material" uid="uid://fvu3egp8e2aj" path="res://Assets/Materials/wall_material.tres" id="2_pg35k"]
+[ext_resource type="PackedScene" uid="uid://bp4mneie4lpnw" path="res://Scenes/Player/player.tscn" id="3_ijfjq"]
+
+[node name="root" type="Node3D"]
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Map"]
+material_override = ExtResource("1_p45f2")
+use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="Wall" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.49915, 2, 0)
+material_override = ExtResource("2_pg35k")
+use_collision = true
+size = Vector3(1, 3, 10)
+
+[node name="Wall2" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49711, 2, 0)
+material_override = ExtResource("2_pg35k")
+use_collision = true
+size = Vector3(1, 3, 10)
+
+[node name="Wall3" type="CSGBox3D" parent="Map"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0010231, 2, -4.49813)
+material_override = ExtResource("2_pg35k")
+use_collision = true
+size = Vector3(1, 3, 8)
+
+[node name="Wall4" type="CSGBox3D" parent="Map"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.00102349, 2, 4.49813)
+material_override = ExtResource("2_pg35k")
+use_collision = true
+size = Vector3(1, 3, 8)
+
+[node name="Player" parent="." instance=ExtResource("3_ijfjq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558223, 0)
