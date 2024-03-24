@@ -1,0 +1,4 @@
+- [ ] Import model
+- [ ] Add animations
+- [ ] Add movement
+- [ ] Add shooting/attacking
