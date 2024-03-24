@@ -1,7 +1,11 @@
 extends CharacterBody3D
 
 
-const SPEED: float = 5.0
+@onready var visuals = $Visuals
+
+
+
+const SPEED: float = 3.0
 const JUMP_VELOCITY: float = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -21,11 +25,13 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = direction.rotated(Vector3(0.0, 1, 0.0), 0.75)
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		visuals.look_at(direction + position)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	
 	move_and_slide()

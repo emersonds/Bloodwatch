@@ -37,5 +37,12 @@ material_override = ExtResource("2_pg35k")
 use_collision = true
 size = Vector3(1, 3, 8)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.40297, 0)
+light_energy = 1.485
+light_size = 0.153
+light_specular = 1.308
+omni_range = 6.54
+
 [node name="Player" parent="." instance=ExtResource("3_ijfjq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558223, 0)
